@@ -1,0 +1,183 @@
+﻿body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: black;
+    padding: 30px;
+}
+
+.container {
+    position: relative;
+    max-width: 850px;
+    width: 100%;
+    background: black;
+    padding: 40px 30px;
+    perspective: 2700px;
+    border: 2px solid green;
+}
+
+    .container .cover {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        height: 100%;
+        width: 50%;
+        z-index: 98;
+        transition: all 1s ease;
+        transform-origin: left;
+        transform-style: preserve-3d;
+    }
+
+        .container .cover::before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: green;
+            opacity: 0.3;
+            z-index: 12;
+        }
+
+        .container .cover img {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            z-index: 10;
+        }
+
+    .container .forms {
+        height: 100%;
+        width: 100%;
+        background: black;
+    }
+
+    .container .form-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+.forms .form-content .title {
+    position: relative;
+    font-size: 35px;
+    font-weight: 500;
+    color: white;
+}
+
+    .forms .form-content .title:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 60px;
+        background: green;
+    }
+
+.forms .form-content .input-boxes {
+    margin-top: 30px;
+}
+
+.input-boxes i {
+    color: white;
+    width: 28px;
+}
+
+.forms .form-content .input-box {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: 110%;
+    margin: 7px 0;
+    position: relative;
+    padding-bottom: 23px;
+}
+
+.form-content .input-box input {
+    /* height: 35px;
+    width: 250px;
+    outline: none;
+    border: none;
+    padding: 0 30px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px solid rgba(0,0,0,0.2);
+    transition: all 0.3s ease;*/
+    height: 203%;
+    width: 71%;
+    outline: none;
+    border: none;
+    padding: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+    .form-content .input-box input:focus,
+    .form-content .input-box input:valid {
+        border-color: green;
+        height: 35px;
+        width: 250px;
+    }
+
+.forms .form-content .text {
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+    padding-top: 15px;
+}
+
+    .forms .form-content .text a {
+        text-decoration: none;
+        color: green;
+    }
+
+        .forms .form-content .text a:hover {
+            text-decoration: underline;
+        }
+
+.forms .form-content .button {
+    color: #fff;
+    margin-top: 40px;
+}
+
+    .forms .form-content .button input {
+        color: #fff;
+        background: green;
+        border-radius: 6px;
+        padding: 0;
+        cursor: pointer;
+        transition: all 0.4s ease;
+    }
+
+        .forms .form-content .button input:hover {
+            background: rgb(4, 48, 4);
+        }
+
+.forms .form-content .login-text {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.input-box label {
+    color: rgb(98, 211, 98);
+    width: 26%;
+    font-size: 22px;
+    position: relative;
+    height: 25px;
+}
+
+#submit-r {
+    color: green;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+    #submit-r:hover {
+        text-decoration: underline;
+    }
+
+

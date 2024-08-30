@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SoundWaveOfficialModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_Podcast">
+          <Key>
+            <PropertyRef Name="PodcastId" />
+          </Key>
+          <Property Name="PodcastId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PodcastName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="AuthorName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UploadFile" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Registration1">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ConfirmPassword" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Birthdate" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tbl_Podcast_tbl_Registration1">
+          <End Role="tbl_Registration1" Type="Self.tbl_Registration1" Multiplicity="1" />
+          <End Role="tbl_Podcast" Type="Self.tbl_Podcast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Registration1">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_Podcast">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SoundWaveOfficialModelStoreContainer">
+          <EntitySet Name="tbl_Podcast" EntityType="Self.tbl_Podcast" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Registration1" EntityType="Self.tbl_Registration1" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbl_Podcast_tbl_Registration1" Association="Self.FK_tbl_Podcast_tbl_Registration1">
+            <End Role="tbl_Registration1" EntitySet="tbl_Registration1" />
+            <End Role="tbl_Podcast" EntitySet="tbl_Podcast" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SoundWaveOfficialModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_Podcast">
+          <Key>
+            <PropertyRef Name="PodcastId" />
+          </Key>
+          <Property Name="PodcastId" Type="Int32" Nullable="false" />
+          <Property Name="PodcastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AuthorName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UploadFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tbl_Registration1" Relationship="SoundWaveOfficialModel.FK_tbl_Podcast_tbl_Registration1" FromRole="tbl_Podcast" ToRole="tbl_Registration1" />
+        </EntityType>
+        <EntityContainer Name="SoundWaveOfficialEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_Podcast" EntityType="Self.tbl_Podcast" />
+          <EntitySet Name="tbl_Registration1" EntityType="SoundWaveOfficialModel.tbl_Registration1" />
+          <AssociationSet Name="FK_tbl_Podcast_tbl_Registration1" Association="SoundWaveOfficialModel.FK_tbl_Podcast_tbl_Registration1">
+            <End Role="tbl_Registration1" EntitySet="tbl_Registration1" />
+            <End Role="tbl_Podcast" EntitySet="tbl_Podcast" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tbl_Registration1">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ConfirmPassword" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Birthdate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tbl_Podcast" Relationship="SoundWaveOfficialModel.FK_tbl_Podcast_tbl_Registration1" FromRole="tbl_Registration1" ToRole="tbl_Podcast" />
+        </EntityType>
+        <Association Name="FK_tbl_Podcast_tbl_Registration1">
+          <End Type="SoundWaveOfficialModel.tbl_Registration1" Role="tbl_Registration1" Multiplicity="1" />
+          <End Type="SoundWaveOfficialModel.tbl_Podcast" Role="tbl_Podcast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Registration1">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_Podcast">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SoundWaveOfficialModelStoreContainer" CdmEntityContainer="SoundWaveOfficialEntities1">
+          <EntitySetMapping Name="tbl_Podcast">
+            <EntityTypeMapping TypeName="SoundWaveOfficialModel.tbl_Podcast">
+              <MappingFragment StoreEntitySet="tbl_Podcast">
+                <ScalarProperty Name="PodcastId" ColumnName="PodcastId" />
+                <ScalarProperty Name="PodcastName" ColumnName="PodcastName" />
+                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UploadFile" ColumnName="UploadFile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Registration1">
+            <EntityTypeMapping TypeName="SoundWaveOfficialModel.tbl_Registration1">
+              <MappingFragment StoreEntitySet="tbl_Registration1">
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
